@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pooria Moosavi - GitHub Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #238636;
+            --primary-hover: #2ea043;
+            --secondary: #58a6ff;
+            --bg-dark: #0d1117;
+            --bg-medium: #161b22;
+            --bg-light: #21262d;
+            --text: #c9d1d9;
+            --text-light: #8b949e;
+            --border: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: var(--bg-dark);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-hover) 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><circle cx="50" cy="50" r="40" fill="white" /></svg>');
+            opacity: 0.1;
+        }
+        
+        .profile {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #238636, #58a6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 15px;
+            background: var(--secondary);
+            color: var(--bg-dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .project-card {
+            background-color: var(--bg-medium);
+            border-radius: 10px;
+            padding: 25px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+            border-color: var(--secondary);
+        }
+        
+        .project-card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .project-card p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+        
+        .btn-secondary {
+            background-color: var(--bg-light);
+            color: var(--text);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-full {
+            display: block;
+            width: 100%;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--bg-medium);
+            color: var(--text-light);
+            font-size: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <div class="profile-img">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h1>Pooria Moosavi</h1>
+                <p class="tagline">GitHub Projects Portfolio</p>
+                <div class="social-links">
+                    <a href="https://github.com/Pooria-Moosavi" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </header>
+        
+        <div class="content">
+            <section class="section">
+                <h2><i class="fas fa-user"></i> About Me</h2>
+                <p>Welcome to my GitHub Pages site. I'm a developer with interests in data analysis, financial systems, and web development. This site serves as a portfolio for my projects hosted on GitHub.</p>
+                <p>Feel free to explore my work below and get in touch if you'd like to collaborate or have any questions about my projects.</p>
+            </section>
+            
+            <section class="section">
+                <h2><i class="fas fa-project-diagram"></i> Featured Projects</h2>
+                <div class="projects">
+                    <div class="project-card">
+                        <h3><i class="fas fa-coins"></i> CBI Balance Sheet</h3>
+                        <p>A comprehensive liquidity report for the Central Bank of Iran, showing financial data from 2017 to 2023 with detailed breakdowns of assets and liabilities.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-code"></i> HTML, CSS</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                        </div>
+                        <a href="Liquidity.html" class="btn btn-full"><i class="fas fa-external-link-alt"></i> View Project</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3><i class="fas fa-chart-line"></i> Data Visualization</h3>
+                        <p>Interactive charts and graphs that visualize the balance sheet data, making it easier to understand trends and patterns in the financial data.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-code"></i> JavaScript, D3.js</span>
+                            <span><i class="fas fa-calendar"></i> Coming Soon</span>
+                        </div>
+                        <a href="#" class="btn btn-full btn-secondary"><i class="fas fa-clock"></i> In Development</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3><i class="fas fa-calculator"></i> Financial Calculator</h3>
+                        <p>A tool for performing various financial calculations based on the balance sheet data, with options to customize parameters and assumptions.</p>
+                        <div class="project-meta">
+                            <span><i class="fas fa-code"></i> JavaScript</span>
+                            <span><i class="fas fa-calendar"></i> Coming Soon</span>
+                        </div>
+                        <a href="#" class="btn btn-full btn-secondary"><i class="fas fa-clock"></i> In Development</a>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2><i class="fas fa-code"></i> GitHub Repositories</h2>
+                <p>Here are some of my GitHub repositories that contain the source code for these projects:</p>
+                <div class="projects">
+                    <div class="project-card">
+                        <h3><i class="fab fa-github"></i> Pooria-Moosavi.github.io</h3>
+                        <p>The source code for this GitHub Pages site, including the HTML, CSS, and JavaScript files that power the presentation.</p>
+                        <a href="https://github.com/Pooria-Moosavi/Pooria-Moosavi.github.io" class="btn"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3><i class="fab fa-github"></i> CBI_Balance_Sheet.github.io</h3>
+                        <p>The original repository containing the balance sheet data and initial implementation of the liquidity report.</p>
+                        <a href="https://github.com/Pooria-Moosavi/CBI_Balance_Sheet.github.io" class="btn"><i class="fas fa-external-link-alt"></i> View Repository</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="footer">
+            <p>Hosted on GitHub Pages &mdash; Created by Pooria Moosavi</p>
+            <p>Last updated: November 2023</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple animation for page elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            const headers = document.querySelectorAll('h2');
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            headers.forEach(header => {
+                header.style.opacity = '0';
+                header.style.transition = 'opacity 0.5s ease';
+            });
+            
+            setTimeout(() => {
+                headers.forEach((header, index) => {
+                    setTimeout(() => {
+                        header.style.opacity = '1';
+                    }, 100 * index);
+                });
+                
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 200 + (100 * index));
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
